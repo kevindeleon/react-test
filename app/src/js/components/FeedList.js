@@ -5,13 +5,20 @@ var FeedList = React.createClass({
 
 	render: function() {
 		var feedItems = this.props.items.map(function(item) {
-			return <FeedItem title={item.description} desc={item.description} voteCount={item.voteCount} />
-		});
+			return <FeedItem key={item.feedItemKey}
+						feedItemKey={item.feedItemKey}
+						title={item.title}
+						desc={item.description}
+						voteCount={item.voteCount}
+						onVote={this.props.onVote} />
+		}.bind(this));
 		
 		return (
-			<ul className="list-group container">
-				{feedItems}
-			</ul>
+			<div className="container">
+				<ul className="list-group">
+					{feedItems}
+				</ul>
+			</div>
 		);
 	}
 
